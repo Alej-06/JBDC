@@ -237,8 +237,10 @@ public class Tema8Entrega {
 					JOptionPane.showMessageDialog(frmSupermercado, "Las unidades de venta deben ser un número entero de dos cifras como mucho","Advertencia",JOptionPane.ERROR_MESSAGE);
 				}else if (!comprobarExpReg(textFieldAlmacen.getText(),"^\\d{1,2}$")){
 					JOptionPane.showMessageDialog(frmSupermercado, "Las unidades de almacén deben ser un número entero de dos cifras como mucho","Advertencia",JOptionPane.ERROR_MESSAGE);
-				/*}else if (ld2.getYear(textFieldCaducidad.getText())<2025){
-					JOptionPane.showMessageDialog(frmSupermercado, "El nombre está vacío","Advertencia",JOptionPane.ERROR_MESSAGE);*/
+				}else if (!comprobarExpReg(textFieldCaducidad.getText(),"^\\d{4}\\-\\d{2}\\-\\d{2}$")){
+					JOptionPane.showMessageDialog(frmSupermercado, "La fecha de caducidad debe tener formato aaaa-mm-dd","Advertencia",JOptionPane.ERROR_MESSAGE);
+				}else  if ((LocalDate.parse(textFieldCaducidad.getText()).isBefore(LocalDate.now()))){
+					JOptionPane.showMessageDialog(frmSupermercado, "La fecha de caducidad debe ser posterior a la fecha actual","Advertencia",JOptionPane.ERROR_MESSAGE);
 				}else {
 				try {					
 					Connection con = ConnectionSingleton.getConnection();
